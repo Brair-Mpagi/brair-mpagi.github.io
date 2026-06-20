@@ -1,0 +1,180 @@
+.contact__header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+}
+
+.contact__header .section-subtitle {
+  margin: 0 auto;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+/* Form */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.contact__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.contact__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contact__input {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3) var(--sp-4);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.contact__input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.contact__input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.contact__select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238896A8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.contact__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact__submit {
+  align-self: flex-start;
+  padding: var(--sp-3) var(--sp-8);
+}
+
+/* Info Card */
+.contact__info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+
+.contact__info-title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
+}
+
+.contact__info-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--sp-6);
+}
+
+.contact__channels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.contact__channel {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact__channel:hover {
+  background: rgba(0, 212, 255, 0.05);
+  color: inherit;
+}
+
+.contact__channel-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.contact__channel-label {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+}
+
+.contact__channel-value {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Availability */
+.contact__availability {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: rgba(16, 240, 160, 0.05);
+  border: 1px solid rgba(16, 240, 160, 0.15);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  color: var(--success);
+  font-weight: 500;
+}
+
+.contact__availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__submit {
+    width: 100%;
+    justify-content: center;
+  }
+}

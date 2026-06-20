@@ -1,0 +1,159 @@
+.neural-graph {
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding: var(--sp-16) 0;
+}
+
+.neural-graph__header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+}
+
+.neural-graph__viewport {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.neural-graph__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.neural-graph__nodes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Neural Circular Nodes */
+.neural-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.neural-node__circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  position: relative;
+  z-index: 2;
+}
+
+.neural-node__icon {
+  font-size: var(--fs-base);
+  transition: transform var(--transition-fast);
+}
+
+/* Special styling for input/output nodes (thrice bigger than 42px => 126px) */
+.neural-node--special .neural-node__circle {
+  width: 126px;
+  height: 126px;
+  border-color: var(--node-color);
+  box-shadow: 0 0 35px var(--node-color);
+  border-width: 2px;
+}
+
+.neural-node--special .neural-node__icon {
+  font-size: 2.5rem;
+}
+
+/* Tooltip / Labels styling */
+.neural-node__tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  background: rgba(13, 17, 23, 0.95);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.neural-node__tooltip-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.neural-node__tooltip-subtitle {
+  font-size: 9px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+/* Hover effects */
+.neural-node:hover .neural-node__circle,
+.neural-node--hovered .neural-node__circle {
+  border-color: var(--node-color);
+  box-shadow: 0 0 25px var(--node-color);
+  transform: scale(1.15);
+}
+
+.neural-node:hover .neural-node__icon,
+.neural-node--hovered .neural-node__icon {
+  transform: scale(1.1);
+}
+
+.neural-node:hover .neural-node__tooltip,
+.neural-node--hovered .neural-node__tooltip {
+  opacity: 1;
+  border-color: var(--node-color);
+  transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+  .neural-node__circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .neural-node__icon {
+    font-size: var(--fs-xs);
+  }
+
+  .neural-node--special .neural-node__circle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .neural-node--special .neural-node__icon {
+    font-size: 1.8rem;
+  }
+}

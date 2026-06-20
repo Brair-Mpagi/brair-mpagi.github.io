@@ -1,0 +1,94 @@
+.skill-radar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  justify-content: center;
+  margin-top: var(--sp-12);
+}
+
+.skill-radar__canvas {
+  cursor: crosshair;
+  flex-shrink: 0;
+}
+
+.skill-radar__legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 220px;
+}
+
+.skill-radar__legend-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.skill-radar__legend-item:hover,
+.skill-radar__legend-item--active {
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.skill-radar__legend-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-surface);
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.skill-radar__legend-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent-gradient);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-radar__legend-item--active .skill-radar__legend-fill {
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.skill-radar__legend-label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.skill-radar__legend-item--active .skill-radar__legend-label {
+  color: var(--accent-primary);
+}
+
+.skill-radar__legend-value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  min-width: 35px;
+  text-align: right;
+}
+
+.skill-radar__legend-item--active .skill-radar__legend-value {
+  color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .skill-radar {
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .skill-radar__canvas {
+    max-width: 300px;
+  }
+
+  .skill-radar__legend {
+    width: 100%;
+    min-width: unset;
+  }
+}
