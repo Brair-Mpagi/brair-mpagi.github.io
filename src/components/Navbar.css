@@ -1,0 +1,217 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: var(--sp-4) 0;
+  transition: all var(--transition-base);
+}
+
+.navbar--scrolled {
+  background: var(--navbar-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  padding: var(--sp-3) 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-8);
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.navbar__logo:hover {
+  color: var(--accent-primary);
+}
+
+.navbar__logo-icon {
+  color: var(--accent-primary);
+  font-weight: 400;
+}
+
+.navbar__logo-dot {
+  color: var(--accent-secondary);
+}
+
+.navbar__logo-text {
+  background: var(--accent-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation Links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.navbar__link {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.navbar__link:hover {
+  color: var(--text-primary);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.navbar__link--active {
+  color: var(--accent-primary);
+}
+
+.navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+}
+
+/* Actions */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.navbar__actions-mobile {
+  display: none;
+}
+
+.navbar__cv-btn {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-xs);
+}
+
+.navbar__theme-toggle {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-2);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.navbar__theme-toggle:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--sp-2);
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.navbar__hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-surface);
+    flex-direction: column;
+    padding: var(--sp-24) var(--sp-8) var(--sp-8);
+    gap: var(--sp-2);
+    transition: right var(--transition-slow);
+    border-left: 1px solid var(--border);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+    align-items: flex-start;
+    z-index: 999;
+  }
+
+  .navbar__links--open {
+    right: 0;
+  }
+
+  .navbar__link {
+    font-size: var(--fs-base);
+    padding: var(--sp-3) var(--sp-4);
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar__actions-mobile {
+    display: flex;
+    margin-top: var(--sp-6);
+    width: 100%;
+  }
+
+  .navbar__actions-mobile .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar__cv-btn {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+}
