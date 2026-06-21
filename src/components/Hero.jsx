@@ -205,7 +205,7 @@ export default function Hero() {
           </div>
           <h1 className="hero__title">
             I build <span className="hero__title-gradient">intelligent</span><br />
-            systems that  </h1>
+            systems </h1>
           <p className="hero__subtitle">
             Building production-grade systems from <span className="hero__subtitle-accent">Kampala, Uganda</span>.
           </p>
