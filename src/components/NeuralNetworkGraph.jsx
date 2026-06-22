@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './NeuralNetworkGraph.css';
 
 const LAYERS = [
@@ -78,6 +79,7 @@ function getCoords(node, w, h) {
 export default function NeuralNetworkGraph() {
   const canvasRef   = useRef(null);
   const containerRef = useRef(null);
+  const headerRef = useScrollReveal();
   const [hoveredNodeId, setHoveredNodeId] = useState(null);
 
   // Draw canvas connections (lines only)
@@ -120,6 +122,10 @@ export default function NeuralNetworkGraph() {
   return (
     <div className="neural-graph section" id="neural-graph-section" ref={containerRef}>
       <div className="container">
+        <div className="reveal" ref={headerRef} style={{ marginBottom: 'var(--sp-8)', textAlign: 'center' }}>
+          <span className="section-label">// Cognitive Map</span>
+          <h2 className="section-title">Neural Skill Graph</h2>
+        </div>
         <div className="neural-graph__viewport">
           <canvas ref={canvasRef} className="neural-graph__canvas" />
 

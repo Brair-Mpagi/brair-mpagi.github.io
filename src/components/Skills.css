@@ -1,12 +1,46 @@
-.skills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-6);
+.skills__deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: var(--sp-12);
+  padding: 60px 20px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  min-height: 400px;
 }
 
-.skills__category {
+.skills__deck::-webkit-scrollbar {
+  display: none;
+}
+
+.skills__deck-card {
+  position: relative;
+  width: 300px;
+  flex-shrink: 0;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  margin-left: -200px; /* Strong overlap */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  box-shadow: -15px 0 30px rgba(0,0,0,0.6);
+  transform-origin: center center;
+}
+
+.skills__deck-card:first-child {
+  margin-left: 0;
+}
+
+.skills__deck-card.active {
+  margin-left: -100px; /* Pull out from stack */
+  margin-right: 80px; /* Push next cards away */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+.skills__deck-card:first-child.active {
+  margin-left: 0;
+  margin-right: 80px;
 }
 
 .skills__category-inner {
@@ -69,13 +103,19 @@
 }
 
 @media (max-width: 1024px) {
-  .skills__grid {
-    grid-template-columns: repeat(2, 1fr);
+  .skills__deck {
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 640px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
+  .skills__deck-card {
+    width: 260px;
+    margin-left: -180px;
+  }
+  
+  .skills__deck-card.active {
+    margin-left: -100px;
+    margin-right: 40px;
   }
 }

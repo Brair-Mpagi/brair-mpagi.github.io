@@ -34,7 +34,7 @@
 
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-6);
 }
 
@@ -199,6 +199,12 @@
   height: 2px;
   background: var(--accent-gradient);
   z-index: 5;
+}
+
+@media (max-width: 1024px) {
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {

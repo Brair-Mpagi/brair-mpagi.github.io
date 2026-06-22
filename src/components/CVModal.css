@@ -1,0 +1,169 @@
+/* ===== Overlay ===== */
+.cvmodal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: cvmodal-fade-in 0.2s ease;
+}
+
+@keyframes cvmodal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ===== Panel ===== */
+.cvmodal__panel--simple {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+  animation: cvmodal-slide-in 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 28px 26px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+@keyframes cvmodal-slide-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== Close ===== */
+.cvmodal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.cvmodal__close:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  background: rgba(0, 212, 255, 0.06);
+}
+
+/* ===== Simple Modal Elements ===== */
+.cvmodal__simple-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  margin-bottom: 2px;
+}
+
+.cvmodal__simple-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cvmodal__simple-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.cvmodal__email-highlight {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.cvmodal__simple-list {
+  list-style: none;
+  padding: 12px 16px;
+  margin: 2px 0 4px;
+  width: 100%;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+}
+
+.cvmodal__simple-list li {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cvmodal__simple-list li::before {
+  content: '›';
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.cvmodal__simple-btn {
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.cvmodal__simple-promise {
+  font-size: var(--fs-xs);
+  color: #10F0A0;
+  margin: 4px 0 2px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.cvmodal__simple-copy {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.cvmodal__simple-copy code {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: 2px 7px;
+  border-radius: 4px;
+  user-select: all;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .cvmodal__panel--simple {
+    padding: 30px 16px 20px;
+  }
+}

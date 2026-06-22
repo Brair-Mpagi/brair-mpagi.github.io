@@ -117,12 +117,12 @@ void insert(Node<T>*& root, T val) {
 }`,
   },
   {
-    title: 'University AI Chatbot',
+    title: 'RAG-AI-conversation-system-FAISS-ST',
     subtitle: 'NLP Research Project',
     description:
       'Final-year thesis: NLP-driven conversational AI for automated institutional knowledge retrieval in African higher education.',
     tags: ['NLP', 'Python', 'AI', 'Research'],
-    github: '#',
+    github: 'https://github.com/Brair-Mpagi/RAG-AI-conversation-system-FAISS-ST',
     category: 'research',
     codePreview: `# NLP Knowledge Extraction
 import spacy

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTheme } from './hooks/useTheme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,22 +11,27 @@ import Projects from './components/Projects';
 import Research from './components/Research';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CVModal from './components/CVModal';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
+  const openCVModal = () => setIsCVModalOpen(true);
+  const closeCVModal = () => setIsCVModalOpen(false);
 
   return (
     <>
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Navbar theme={theme} toggleTheme={toggleTheme} openCVModal={openCVModal} />
       <main>
-        <Hero />
+        <Hero openCVModal={openCVModal} />
         <Stats />
         <NeuralNetworkGraph />
-        <About />
+        <About openCVModal={openCVModal} />
         <div className="gradient-divider"></div>
         <Skills />
         <div className="gradient-divider"></div>
-        <Experience />
+        <Experience openCVModal={openCVModal} />
         <div className="gradient-divider"></div>
         <Projects />
         <div className="gradient-divider"></div>
@@ -34,6 +40,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <CVModal isOpen={isCVModalOpen} onClose={closeCVModal} />
     </>
   );
 }

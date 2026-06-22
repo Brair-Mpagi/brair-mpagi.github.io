@@ -16,7 +16,7 @@ const profileCode = `const brair = {
   funFact: "Codding is a hobby"
 };`;
 
-export default function About() {
+export default function About({ openCVModal }) {
   const revealRef = useScrollReveal();
   const revealRef2 = useScrollReveal();
 
@@ -27,7 +27,7 @@ export default function About() {
           <div className="about__image-col reveal" ref={revealRef}>
             <div className="about__image-wrapper">
               <div className="about__image-placeholder">
-                <span className="about__image-initials">MB</span>
+                <span className="about__image-initials">Brair</span>
                 <div className="about__image-rings">
                   <div className="about__image-ring about__image-ring--1"></div>
                   <div className="about__image-ring about__image-ring--2"></div>
@@ -54,23 +54,16 @@ export default function About() {
           </div>
           <div className="about__content-col reveal" ref={revealRef2}>
             <span className="section-label">// About Me</span>
-            <h2 className="section-title">Turning Data Into<br />Intelligent Systems</h2>
+            <h2 className="section-title">Turning Ideas Into<br />Intelligent Systems</h2>
             <div className="about__text">
               <p>
-                I'm Mpagi Derrick Brair — an AI engineer and full-stack developer finishing my Computer Science degree 
-                at <strong>Mountains of the Moon University</strong>, Uganda. I don't just study AI — I build and 
-                deploy it.
+                I enjoy building software that solve real-world problems. My interests span artificial intelligence, cyber/network security full-stack development, automation, and data-driven systems.
               </p>
               <p>
-                My work spans from <strong>RAG-powered chatbot systems</strong> using FAISS and Sentence Transformers, 
-                to <strong>ML-driven sales prediction engines</strong>, to <strong>full-stack web platforms</strong> 
-                built with React and Node.js. My final-year research focuses on NLP-driven institutional knowledge 
-                retrieval — solving real problems in African higher education.
+                From AI sys and ML applications to scalable web platforms and backend services, I enjoy exploring how technology can transform complex challenges into practical solutions. I'm particularly interested in intelligent systems, natural language processing, and building tools that make information more accessible and workflows more efficient.
               </p>
               <p>
-                I've managed <strong>40+ workstations</strong> at the Uganda Industrial Research Institute, 
-                configured enterprise LANs, and worked on user acceptance testing for production systems. 
-                AI depth + web engineering breadth + real deployment experience — that's my edge.
+                --&gt; I'm always learning
               </p>
             </div>
 
@@ -115,7 +108,7 @@ export default function About() {
               >
                 See My Projects
               </button>
-              <a href="/resume.pdf" download className="btn btn-secondary">Download CV</a>
+              <button onClick={openCVModal} className="btn btn-secondary">Request CV</button>
             </div>
           </div>
         </div>

@@ -139,12 +139,12 @@ function Terminal() {
 }
 
 const orbitTechs = [
-  { name: 'Python', angle: 0, radius: 140, speed: 0.3, color: '#3776AB' },
-  { name: 'React', angle: 60, radius: 140, speed: 0.3, color: '#61DAFB' },
-  { name: 'FAISS', angle: 120, radius: 140, speed: 0.3, color: '#00D4FF' },
-  { name: 'NLP', angle: 180, radius: 140, speed: 0.3, color: '#7C3AED' },
-  { name: 'Node.js', angle: 240, radius: 140, speed: 0.3, color: '#68A063' },
-  { name: 'ML', angle: 300, radius: 140, speed: 0.3, color: '#10F0A0' },
+  { name: 'LLMs', angle: 0, radius: 140, speed: 0.3, color: '#3776AB' },
+  { name: 'RAG', angle: 60, radius: 140, speed: 0.3, color: '#61DAFB' },
+  { name: 'Embeddings', angle: 120, radius: 140, speed: 0.3, color: '#00D4FF' },
+  { name: 'FAISS', angle: 180, radius: 140, speed: 0.3, color: '#7C3AED' },
+  { name: 'Transformers', angle: 240, radius: 140, speed: 0.3, color: '#68A063' },
+  { name: 'Agents', angle: 300, radius: 140, speed: 0.3, color: '#10F0A0' },
 ];
 
 function TechOrbit() {
@@ -192,7 +192,7 @@ function TechOrbit() {
   );
 }
 
-export default function Hero() {
+export default function Hero({ openCVModal }) {
   return (
     <section className="hero" id="hero">
       <ParticleCanvas />
@@ -217,10 +217,10 @@ export default function Hero() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               View Projects
             </button>
-            <a href="/resume.pdf" download className="btn btn-secondary hero__btn">
+            <button onClick={openCVModal} className="btn btn-secondary hero__btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CV
-            </a>
+              Request CV
+            </button>
           </div>
           <TechOrbit />
         </div>

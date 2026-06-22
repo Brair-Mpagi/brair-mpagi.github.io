@@ -1,59 +1,58 @@
-.experience__timeline {
-  margin-top: var(--sp-12);
+.experience__deck {
   display: flex;
-  flex-direction: column;
-}
-
-.timeline__entry {
-  display: flex;
-  gap: var(--sp-6);
-  position: relative;
-}
-
-.timeline__marker {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-shrink: 0;
-  width: 24px;
+  margin-top: var(--sp-12);
+  padding: 60px 20px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  min-height: 450px;
 }
 
-.timeline__dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--bg-primary);
-  border: 3px solid var(--accent-primary);
-  flex-shrink: 0;
+.experience__deck::-webkit-scrollbar {
+  display: none;
+}
+
+.experience__deck-card {
   position: relative;
-  z-index: 2;
-  transition: all var(--transition-base);
-}
-
-.timeline__entry:hover .timeline__dot {
-  transform: scale(1.3);
-}
-
-.timeline__line {
-  width: 2px;
-  flex: 1;
-  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), var(--border));
-  min-height: 40px;
-}
-
-.timeline__card-wrapper {
-  flex: 1;
-  margin-bottom: var(--sp-6);
+  width: 380px;
+  flex-shrink: 0;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  margin-left: -280px; /* Strong overlap */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  box-shadow: -15px 0 30px rgba(0,0,0,0.6);
+  transform-origin: center center;
+}
+
+.experience__deck-card:first-child {
+  margin-left: 0;
+}
+
+.experience__deck-card.active {
+  margin-left: -120px;
+  margin-right: 120px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+.experience__deck-card:first-child.active {
+  margin-left: 0;
+  margin-right: 120px;
 }
 
 .timeline__card {
   padding: var(--sp-6);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .timeline__header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
   gap: var(--sp-4);
   margin-bottom: var(--sp-4);
@@ -82,18 +81,21 @@
 .timeline__role {
   font-size: var(--fs-sm);
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .timeline__period {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--text-tertiary);
-  white-space: nowrap;
-  flex-shrink: 0;
   padding: var(--sp-1) var(--sp-3);
   background: var(--bg-surface);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+}
+
+.timeline__details {
+  flex: 1;
 }
 
 .timeline__achievements {
@@ -141,23 +143,25 @@
   margin-top: var(--sp-8);
 }
 
-@media (max-width: 768px) {
-  .timeline__header {
-    flex-direction: column;
-    gap: var(--sp-2);
-  }
-
-  .timeline__period {
-    align-self: flex-start;
+@media (max-width: 1024px) {
+  .experience__deck {
+    justify-content: flex-start;
   }
 }
 
-@media (max-width: 480px) {
-  .timeline__marker {
-    display: none;
+@media (max-width: 640px) {
+  .experience__deck-card {
+    width: 320px;
+    margin-left: -240px;
   }
-
-  .timeline__card-wrapper {
-    margin-bottom: var(--sp-4);
+  
+  .experience__deck-card.active {
+    margin-left: -80px;
+    margin-right: 60px;
+  }
+  
+  .experience__deck-card:first-child.active {
+    margin-left: 0;
+    margin-right: 60px;
   }
 }

@@ -16,9 +16,9 @@
 
 .about__image-wrapper {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto var(--sp-2);
+  width: clamp(140px, 40vw, 200px);
+  height: clamp(140px, 40vw, 200px);
+  margin: var(--sp-12) auto var(--sp-12);
 }
 
 .about__image-placeholder {

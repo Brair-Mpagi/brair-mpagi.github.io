@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import SkillRadar from './SkillRadar';
 import GlowCard from './GlowCard';
@@ -81,6 +82,7 @@ const levelConfig = {
 };
 
 export default function Skills() {
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const headerRef = useScrollReveal();
   const radarRef = useScrollReveal();
   const gridRef = useScrollReveal();
@@ -101,35 +103,52 @@ export default function Skills() {
           <SkillRadar />
         </div>
 
-        {/* Category Grid */}
-        <div className="skills__grid reveal reveal-stagger" ref={gridRef}>
-          {skillCategories.map((cat, i) => (
-            <GlowCard className="skills__category" key={i}>
-              <div className="skills__category-inner">
-                <div className="skills__category-header">
-                  <span className="skills__category-icon">{cat.icon}</span>
-                  <h3 className="skills__category-title">{cat.title}</h3>
+        {/* Category Deck */}
+        <div className="skills__deck reveal" ref={gridRef}>
+          {skillCategories.map((cat, i) => {
+            const isActive = activeCardIndex === i;
+            const diff = i - activeCardIndex;
+            
+            return (
+              <GlowCard 
+                key={i}
+                className={`skills__deck-card ${isActive ? 'active' : 'inactive'}`}
+                onClick={() => setActiveCardIndex(i)}
+                style={{
+                  zIndex: 20 - Math.abs(diff),
+                  transform: isActive 
+                    ? 'translateY(-15px) scale(1.05)' 
+                    : `translateY(${Math.abs(diff) * 5}px) scale(${1 - Math.abs(diff) * 0.03}) rotateZ(${diff * 1.5}deg)`,
+                  opacity: isActive ? 1 : 0.6,
+                  filter: isActive ? 'none' : 'blur(1px)'
+                }}
+              >
+                <div className="skills__category-inner">
+                  <div className="skills__category-header">
+                    <span className="skills__category-icon">{cat.icon}</span>
+                    <h3 className="skills__category-title">{cat.title}</h3>
+                  </div>
+                  <div className="skills__tags" style={{ opacity: isActive ? 1 : 0.3, transition: 'opacity 0.4s' }}>
+                    {cat.skills.map((skill, j) => (
+                      <div className="skills__tag" key={j}>
+                        <span className="skills__tag-name">{skill.name}</span>
+                        <span
+                          className="skills__tag-level"
+                          style={{
+                            color: levelConfig[skill.level].color,
+                            background: levelConfig[skill.level].bg,
+                            borderColor: levelConfig[skill.level].border,
+                          }}
+                        >
+                          {skill.level}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="skills__tags">
-                  {cat.skills.map((skill, j) => (
-                    <div className="skills__tag" key={j}>
-                      <span className="skills__tag-name">{skill.name}</span>
-                      <span
-                        className="skills__tag-level"
-                        style={{
-                          color: levelConfig[skill.level].color,
-                          background: levelConfig[skill.level].bg,
-                          borderColor: levelConfig[skill.level].border,
-                        }}
-                      >
-                        {skill.level}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </GlowCard>
-          ))}
+              </GlowCard>
+            );
+          })}
         </div>
       </div>
     </section>
