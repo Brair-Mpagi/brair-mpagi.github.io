@@ -1,10 +1,10 @@
-# Mpagi Derrick Brair — AI Engineer & Full-Stack Developer
+# Mpagi Brair | Mpagi Derrick Brair — AI Engineer & Full-Stack Developer
 
 **Mpagi Brair** | **Brair Mpagi** | **Mpagi Derrick Brair** | **Derrick Brair**
 
-AI Engineer and Full-Stack Developer based in Kampala, Uganda 🇺🇬
+ML Engineer, Cyber Security Analyst and Full-Stack Developer based in Kampala, Uganda 🇺🇬
 
-I build intelligent, production-grade systems — from RAG-powered chatbots and NLP pipelines to ML-driven prediction engines and full-stack web platforms.
+I build intelligent, production-grade systems.
 
 🔗 **Portfolio:** [brair-mpagi.github.io](https://brair-mpagi.github.io/)
 
@@ -19,7 +19,7 @@ I build intelligent, production-grade systems — from RAG-powered chatbots and 
 
 ## Current Focus
 
-- Final-year CS thesis: NLP-driven knowledge retrieval for African higher education
+- CS thesis: NLP-driven knowledge retrieval for African higher education
 - Embedded systems & network engineering
 - Cybersecurity and network analysis
 
