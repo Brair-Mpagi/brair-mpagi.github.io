@@ -72,7 +72,11 @@ const LAYERS = [
 
 const ALL_NODES = LAYERS.flat();
 
-function getCoords(node, w, h) {
+function getCoords(node, w, h, isMobile) {
+  if (isMobile) {
+    // Transpose graph: nodes flow from top to bottom (Y maps to width, X maps to height)
+    return { x: (node.y / 100) * w, y: (node.x / 100) * h };
+  }
   return { x: (node.x / 100) * w, y: (node.y / 100) * h };
 }
 
@@ -81,6 +85,17 @@ export default function NeuralNetworkGraph() {
   const containerRef = useRef(null);
   const headerRef = useScrollReveal();
   const [hoveredNodeId, setHoveredNodeId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle responsive mobile layout detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Draw canvas connections (lines only)
   useEffect(() => {
@@ -102,9 +117,9 @@ export default function NeuralNetworkGraph() {
     // Draw static connections
     for (let l = 0; l < LAYERS.length - 1; l++) {
       LAYERS[l].forEach(curr => {
-        const cc = getCoords(curr, w, h);
+        const cc = getCoords(curr, w, h, isMobile);
         LAYERS[l + 1].forEach(next => {
-          const nc = getCoords(next, w, h);
+          const nc = getCoords(next, w, h, isMobile);
           const hl = hoveredNodeId === curr.id || hoveredNodeId === next.id;
           ctx.beginPath();
           ctx.moveTo(cc.x, cc.y);
@@ -117,7 +132,7 @@ export default function NeuralNetworkGraph() {
         });
       });
     }
-  }, [hoveredNodeId]);
+  }, [hoveredNodeId, isMobile]);
 
   return (
     <div className="neural-graph section" id="neural-graph-section" ref={containerRef}>
@@ -131,23 +146,28 @@ export default function NeuralNetworkGraph() {
 
           {/* Node overlay */}
           <div className="neural-graph__nodes-container">
-            {ALL_NODES.map(node => (
-              <div
-                key={node.id}
-                className={`neural-node${node.isSpecial ? ' neural-node--special' : ''}${hoveredNodeId === node.id ? ' neural-node--hovered' : ''}`}
-                style={{ left: `${node.x}%`, top: `${node.y}%`, '--node-color': node.color }}
-                onMouseEnter={() => setHoveredNodeId(node.id)}
-                onMouseLeave={() => setHoveredNodeId(null)}
-              >
-                <div className="neural-node__circle">
-                  <span className="neural-node__icon">{node.icon}</span>
+            {ALL_NODES.map(node => {
+              const xPos = isMobile ? node.y : node.x;
+              const yPos = isMobile ? node.x : node.y;
+
+              return (
+                <div
+                  key={node.id}
+                  className={`neural-node${node.isSpecial ? ' neural-node--special' : ''}${hoveredNodeId === node.id ? ' neural-node--hovered' : ''}`}
+                  style={{ left: `${xPos}%`, top: `${yPos}%`, '--node-color': node.color }}
+                  onMouseEnter={() => setHoveredNodeId(node.id)}
+                  onMouseLeave={() => setHoveredNodeId(null)}
+                >
+                  <div className="neural-node__circle">
+                    <span className="neural-node__icon">{node.icon}</span>
+                  </div>
+                  <div className="neural-node__tooltip">
+                    <span className="neural-node__tooltip-title">{node.name}</span>
+                    {node.subtitle && <span className="neural-node__tooltip-subtitle">{node.subtitle}</span>}
+                  </div>
                 </div>
-                <div className="neural-node__tooltip">
-                  <span className="neural-node__tooltip-title">{node.name}</span>
-                  {node.subtitle && <span className="neural-node__tooltip-subtitle">{node.subtitle}</span>}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

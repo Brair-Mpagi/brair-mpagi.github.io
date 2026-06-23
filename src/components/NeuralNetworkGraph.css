@@ -125,21 +125,68 @@
 }
 
 @media (max-width: 768px) {
+  .neural-graph {
+    padding: var(--sp-8) 0;
+  }
+
+  .neural-graph__viewport {
+    height: 330px; /* Cover small height, fully visible */
+    margin: 0 auto;
+    max-width: 480px;
+  }
+
+  /* Compact nodes for small screen width */
   .neural-node__circle {
-    width: 34px;
-    height: 34px;
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   .neural-node__icon {
-    font-size: var(--fs-xs);
+    font-size: 10px;
   }
 
+  /* Identity & System nodes */
   .neural-node--special .neural-node__circle {
-    width: 90px;
-    height: 90px;
+    width: 58px;
+    height: 58px;
+    box-shadow: 0 0 15px var(--node-color);
   }
 
   .neural-node--special .neural-node__icon {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+  }
+
+  /* Show small tooltip above node when hovered/active on mobile */
+  .neural-node__tooltip {
+    display: none !important;
+  }
+
+  .neural-node:hover .neural-node__tooltip,
+  .neural-node--hovered .neural-node__tooltip {
+    display: flex !important;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 15, 30, 0.96);
+    border: 1px solid var(--node-color);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .neural-node__tooltip-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .neural-node__tooltip-subtitle {
+    display: none; /* Hide subtitle to keep mobile tooltip extra small */
   }
 }

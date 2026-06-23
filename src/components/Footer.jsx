@@ -1,6 +1,6 @@
 import './Footer.css';
 
-export default function Footer() {
+export default function Footer({ openCVModal }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -31,7 +31,7 @@ export default function Footer() {
               <h4 className="footer__link-title">Connect</h4>
               <a href="https://github.com/Brair-Mpagi" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="mailto:mpagiderrick@gmail.com">Email</a>
-              <a href="/resume.pdf" download>Resume</a>
+              <button onClick={openCVModal}>Resume</button>
             </div>
           </div>
         </div>

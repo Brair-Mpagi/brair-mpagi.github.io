@@ -39,7 +39,7 @@ function App() {
         <div className="gradient-divider"></div>
         <Contact />
       </main>
-      <Footer />
+      <Footer openCVModal={openCVModal} />
       <CVModal isOpen={isCVModalOpen} onClose={closeCVModal} />
     </>
   );
