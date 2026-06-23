@@ -59,7 +59,7 @@ const scoreLeads = async (leads) => {
     codePreview: `# LP + ML Hybrid Optimization
 from scipy.optimize import linprog
 from sklearn.ensemble import RandomForestRegressor
-
+ 
 def optimize(constraints, features):
     model = RandomForestRegressor()
     model.fit(X_train, y_train)
@@ -79,7 +79,7 @@ def optimize(constraints, features):
     category: 'ai',
     codePreview: `# Model Evaluation Pipeline
 from sklearn.model_selection import GridSearchCV
-
+ 
 param_grid = {
   'C': [0.1, 1, 10],
   'penalty': ['l1', 'l2']
@@ -141,22 +141,10 @@ def extract_entities(query):
   },
 ];
 
-const filters = [
-  { label: 'All', value: 'all' },
-  { label: 'AI / ML', value: 'ai' },
-  { label: 'Web', value: 'web' },
-  { label: 'Research', value: 'research' },
-];
-
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState(null);
   const headerRef = useScrollReveal();
   const gridRef = useScrollReveal();
-
-  const filtered = activeFilter === 'all'
-    ? projects
-    : projects.filter(p => p.category === activeFilter);
 
   return (
     <section className="projects section" id="projects">
@@ -165,24 +153,12 @@ export default function Projects() {
           <span className="section-label">// Projects</span>
           <h2 className="section-title">What I've Built</h2>
           <p className="section-subtitle">
-            Real, working systems — not tutorials. Each project solves a genuine problem with deployed code.
+            Real, working systems not tutorials. Each project solves a genuine problem with deployed code.
           </p>
         </div>
 
-        <div className="projects__filters">
-          {filters.map(f => (
-            <button
-              key={f.value}
-              className={`projects__filter ${activeFilter === f.value ? 'projects__filter--active' : ''}`}
-              onClick={() => setActiveFilter(f.value)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="projects__grid reveal reveal-stagger" ref={gridRef} key={activeFilter}>
-          {filtered.map((project, i) => (
+        <div className="projects__grid reveal reveal-stagger" ref={gridRef}>
+          {projects.map((project, i) => (
             <GlowCard
               key={i}
               className={`project-card ${project.featured ? 'project-card--featured' : ''}`}
