@@ -3,7 +3,6 @@ import { useTheme } from './hooks/useTheme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
-import NeuralNetworkGraph from './components/NeuralNetworkGraph';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
@@ -26,7 +25,6 @@ function App() {
       <main>
         <Hero openCVModal={openCVModal} />
         <Stats />
-        <NeuralNetworkGraph />
         <About openCVModal={openCVModal} />
         <div className="gradient-divider"></div>
         <Skills />
